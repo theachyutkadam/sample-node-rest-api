@@ -7,7 +7,8 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "http://localhost:3000",
+      "description": "Only for developer"
     }
   ],
   "paths": {
@@ -135,6 +136,33 @@
           }
         }
       }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "Login user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Authentication"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Authentication"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -159,6 +187,19 @@
           "status": {
             "type": "integer",
             "minimum": 0
+          }
+        }
+      },
+      "Authentication": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "format": "string"
           }
         }
       }

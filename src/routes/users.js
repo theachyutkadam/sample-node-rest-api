@@ -72,4 +72,16 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// Login user
+router.post('/login', async (req, res) => {
+  try {
+    console.log('Check--payload->', req.body);
+    const user = await User.findAll({where: {email: req.body.email}});
+    console.log('Check--response->', user[0]);
+    res.json(user);
+  } catch (error) {
+    // res.status(500).json({ message: 'Failed to create user.' });
+    res.status(500).json({ message: error.message });
+  }
+});
 module.exports = router;
