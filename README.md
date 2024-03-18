@@ -26,3 +26,9 @@ Create a project structure like this.
 - swagger
   - swagger.json
 - .env
+
+In the NodeJS many ORM(Object Relational Mapper) available. See the following Image.
+  -![alt text](image.png)
+  - We are use the Sequelize ORM in our application.
+
+-How does ORM work.
