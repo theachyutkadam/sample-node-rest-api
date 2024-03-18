@@ -34,5 +34,6 @@ Installation-
 In NodeJS many ORMs (Object Relational Mapper) are available. See the following Image.
   -![alt text](image.png)
   - We are using the Sequelize ORM in our application.
-*Use the following link to check how to implement authentication in NodeJS.*
-https://adevait.com/nodejs/how-to-implement-jwt-authentication-on-node
+
+**Use the following link to check how to implement authentication in NodeJS.**
+- https://adevait.com/nodejs/how-to-implement-jwt-authentication-on-node
