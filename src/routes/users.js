@@ -3,14 +3,24 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
 
 // Create a new user
 router.post('/', async (req, res) => {
   try {
-    console.log('Check--payload->', req.body);
-    const user = await User.create(req.body);
-    console.log('Check--response->', user);
-    res.json(user);
+    const userPayload = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: await bcrypt.hash(req.body.password, 12),
+      status: req.body.status,
+    }
+    const user = await User.create(userPayload);
+    res.json({
+      status: 'success',
+      message: 'User Registered!',
+      data: { user: { email: user.email}},
+    });
   } catch (error) {
     // res.status(500).json({ message: 'Failed to create user.' });
     res.status(500).json({ message: error.message });
@@ -43,8 +53,15 @@ router.get('/:id', async (req, res) => {
 
 // Update user by ID
 router.put('/:id', async (req, res) => {
+  const userPayload = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    password: await bcrypt.hash(req.body.password, 12),
+    status: req.body.status,
+  }
   try {
-    const [updatedRowsCount] = await User.update(req.body, {
+    const [updatedRowsCount] = await User.update(userPayload, {
       where: { id: req.params.id }
     });
     if (updatedRowsCount === 0) {
@@ -76,11 +93,14 @@ router.delete('/:id', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     console.log('Check--payload->', req.body);
-    const user = await User.findAll({where: {email: req.body.email}});
-    console.log('Check--response->', user[0]);
-    res.json(user);
+    const user = await User.findOne({where: {email: req.body.email}});
+    const match = await bcrypt.compare(req.body.password, user['password']);
+    if (match) {
+      res.json(await bcrypt.hash(user['email'], 12));
+    } else {
+      res.status(401).json({ message: 'Invalid credentials' });
+    }
   } catch (error) {
-    // res.status(500).json({ message: 'Failed to create user.' });
     res.status(500).json({ message: error.message });
   }
 });
