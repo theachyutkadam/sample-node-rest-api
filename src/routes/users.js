@@ -1,9 +1,11 @@
 // src/routes/user.js
+const auth = require('../config/authentications');
 
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 // Create a new user
 router.post('/', async (req, res) => {
@@ -28,7 +30,7 @@ router.post('/', async (req, res) => {
 });
 
 // Get all users
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
     const users = await User.findAll();
     res.json(users);
@@ -92,16 +94,18 @@ router.delete('/:id', async (req, res) => {
 // Login user
 router.post('/login', async (req, res) => {
   try {
-    console.log('Check--payload->', req.body);
     const user = await User.findOne({where: {email: req.body.email}});
     if(!user){
       res.status(401).json({ message: 'User not found' });
     }else if (await bcrypt.compare(req.body.password, user['password'])) {
+      const tokenPayload = {
+        email: user['email'],
+      };
       res.json(
         {
           status: 'success',
           message: 'User Logged In!',
-          token: await bcrypt.hash(user['email'], 12),
+          token: jwt.sign(tokenPayload, 'SECRET')
         }
       );
     } else {
