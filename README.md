@@ -1,19 +1,16 @@
 # sample-node-rest-api
-Create a sample node js app with swagger UI, for learn node js as a begginer.
+Create a sample node js app with swagger UI, for learning node js as a beginner.
 
 
 What is Node JS?
 
 Installation-
 
-Create new app/Setup New app-
-- mkdir 'folder_name'
-- cd 'folder_name'
-- nm init -y
-
-- npm install express mysql2 sequelize swagger-ui-express dotenv
-'create a new node project with mysql DB and swagger UI'
-
+**Create new app/Setup New app with MySQL DB and swagger UI**
+- ```mkdir 'folder_name'```
+- ```cd 'folder_name'```
+- ```npm init -y```
+- ```npm install express mysql2 sequelize swagger-ui-express dotenv```
 
 Create a project structure like this.
 - src
@@ -27,8 +24,8 @@ Create a project structure like this.
   - swagger.json
 - .env
 
-In the NodeJS many ORM(Object Relational Mapper) available. See the following Image.
-  -![alt text](image.png)
-  - We are use the Sequelize ORM in our application.
+**What is ORM and how does it work?**
 
--How does ORM work.
+In NodeJS many ORMs (Object Relational Mapper) are available. See the following Image.
+  -![alt text](image.png)
+  - We are using the Sequelize ORM in our application.
