@@ -5,7 +5,7 @@ What is Node JS?
  - Node.js can generate dynamic page content
  - Node.js can create, open, read, write, delete, and close files on the server
  - Node.js can collect form data
- - Node.js can add, delete, modify data in your database
+ - Node.js can add, delete, and modify data in your database
 
 Installation-
 **Create new app/Setup New app with MySQL DB and swagger UI**
@@ -34,3 +34,6 @@ Installation-
 In NodeJS many ORMs (Object Relational Mapper) are available. See the following Image.
   -![alt text](image.png)
   - We are using the Sequelize ORM in our application.
+
+**Use the following link to check how to implement authentication in NodeJS.**
+- https://adevait.com/nodejs/how-to-implement-jwt-authentication-on-node
