@@ -11,6 +11,7 @@
       "description": "Only for developer"
     }
   ],
+
   "paths": {
     "/users": {
       "get": {
@@ -165,7 +166,15 @@
       }
     }
   },
+
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
       "User": {
         "type": "object",
@@ -204,5 +213,9 @@
         }
       }
     }
-  }
+  },
+
+  "security": [
+    { "bearerAuth": [] }
+  ]
 }

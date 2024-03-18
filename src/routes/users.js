@@ -40,7 +40,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 // Get user by ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id);
     if (!user) {
@@ -54,7 +54,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Update user by ID
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
   const userPayload = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -78,7 +78,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete user by ID
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   try {
     const deletedRowsCount = await User.destroy({ where: { id: req.params.id } });
     if (deletedRowsCount === 0) {
