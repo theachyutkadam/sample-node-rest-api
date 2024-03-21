@@ -29,4 +29,8 @@ const User = sequelize.define('user', {
   },
 });
 
+User.association = model => {
+  User.hasMany(model.Team)
+}
+
 module.exports = User;
