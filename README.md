@@ -37,3 +37,7 @@ In NodeJS many ORMs (Object Relational Mapper) are available. See the following 
 
 **Use the following link to check how to implement authentication in NodeJS.**
 - https://adevait.com/nodejs/how-to-implement-jwt-authentication-on-node
+- https://medium.com/@vinayak-singh/creating-crud-apis-with-node-js-and-sequelize-cli-8b90e8784422
+
+*Use the following link for learn Model and Controller structure using sequelize ORM's*
+https://medium.com/@vinayak-singh/creating-crud-apis-with-node-js-and-sequelize-cli-8b90e8784422
